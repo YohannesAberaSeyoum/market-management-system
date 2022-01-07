@@ -28,6 +28,7 @@ public class UserQuery {
 
     public Future<RowSet<Row>> updateUser(String pUsername, String username, String firstname, String lastname,
             String password) {
+
         return client
                 .preparedQuery(
                         "UPDATE users SET firstname = $1, lastname = $2, password = $3, username=$4 WHERE username = $5")
