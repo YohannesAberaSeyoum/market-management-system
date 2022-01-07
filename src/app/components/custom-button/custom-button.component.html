@@ -1,3 +1,7 @@
-<button type="{{ type }}" class="btn btn-{{ color }} col-{{ col }} mx-{{ mx }}">
+<button
+  type="{{ type }}"
+  class="btn btn-{{ color }} col-{{ col }} mx-{{ mx }}"
+  (click)="takeAction()"
+>
   {{ text }}
 </button>

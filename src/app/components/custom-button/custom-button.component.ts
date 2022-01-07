@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-custom-button',
@@ -11,10 +11,15 @@ export class CustomButtonComponent implements OnInit {
   @Input() col:String = "";
   @Input() mx:String = "";
   @Input() type:String = "button";
+  @Output() customClick = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  takeAction(){
+    this.customClick.emit()
   }
 
 }

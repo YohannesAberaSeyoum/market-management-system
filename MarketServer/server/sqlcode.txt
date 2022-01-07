@@ -1,0 +1,57 @@
+CREATE TABLE Categories
+(
+  name        VARCHAR(10)   NOT NULL,
+  username    VARCHAR(15)   NOT NULL,
+  description VARCHAR(1000) NULL    ,
+  PRIMARY KEY (name, username)
+);
+
+CREATE TABLE Products
+(
+  name             VARCHAR(10)   NOT NULL,
+  description      VARCHAR(1000) NULL    ,
+  quantity         INT           NOT NULL DEFAULT 0,
+  subcategory_name VARCHAR(10)   NOT NULL,
+  category_name    VARCHAR(10)   NOT NULL,
+  username         VARCHAR(15)   NOT NULL,
+  PRIMARY KEY (name, subcategory_name, category_name, username)
+);
+
+CREATE TABLE SubCategories
+(
+  name          VARCHAR(10)   NOT NULL,
+  description   VARCHAR(1000) NULL    ,
+  category_name VARCHAR(10)   NOT NULL,
+  username      VARCHAR(15)   NOT NULL,
+  PRIMARY KEY (name, category_name, username)
+);
+
+CREATE TABLE Users
+(
+  username  VARCHAR(15) NOT NULL,
+  password  VARCHAR(15) NOT NULL,
+  firstname VARCHAR(15) NOT NULL,
+  lastname  VARCHAR(15) NOT NULL,
+  PRIMARY KEY (username)
+);
+
+ALTER TABLE Categories
+  ADD CONSTRAINT FK_Users_TO_Categories
+    FOREIGN KEY (username)
+    REFERENCES Users (username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
+
+ALTER TABLE SubCategories
+  ADD CONSTRAINT FK_Categories_TO_SubCategories
+    FOREIGN KEY (category_name, username)
+    REFERENCES Categories (name, username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
+
+ALTER TABLE Products
+  ADD CONSTRAINT FK_SubCategories_TO_Products
+    FOREIGN KEY (subcategory_name, category_name, username)
+    REFERENCES SubCategories (name, category_name, username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;

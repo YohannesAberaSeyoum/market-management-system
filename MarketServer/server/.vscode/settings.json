@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "dataworkspace.excludedProjects": [
+        "src/main/java/com/yohannes/market/market/market.sqlproj"
+    ]
+}

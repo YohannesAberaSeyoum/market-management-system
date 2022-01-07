@@ -14,7 +14,11 @@
         <a href="#" class="text-light">Contact us</a>
       </div>
       <div class="col-12 col-md-3">
-        <app-custom-button text="Signout" color="danger"></app-custom-button>
+        <app-custom-button
+          text="Signout"
+          color="danger"
+          (customClick)="signOut()"
+        ></app-custom-button>
       </div>
     </div>
   </div>

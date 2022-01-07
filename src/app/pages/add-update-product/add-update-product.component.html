@@ -1,0 +1,77 @@
+<form class="col-12 col-md-8 col-lg-6 mx-auto mt-5" #userlogin="ngForm">
+  <div class="form-group">
+    <div class="d-flex justify-content-between">
+      <label for="category">Category</label>
+      <app-custom-button
+        color="secondary"
+        text="Add Category"
+        (customClick)="toAddCategory()"
+      ></app-custom-button>
+    </div>
+    <select [value]="5" class="form-control" id="category">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <div class="d-flex justify-content-between">
+      <label for="subcategory">Subcategory</label>
+      <app-custom-button
+        color="secondary"
+        text="Add Subcategory"
+        (customClick)="toAddSubcategory()"
+      ></app-custom-button>
+    </div>
+    <select class="form-control" id="subcategory">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="product-quantity">Product Quantity</label>
+    <input
+      type="number"
+      class="form-control"
+      id="product-quantity"
+      placeholder="Enter Product Quantity"
+      name="product-quantity"
+      ngModel
+    />
+  </div>
+  <div class="form-group">
+    <label for="productname">Product Name</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngModel]="name"
+      id="productname"
+      placeholder="Enter Product Name"
+      name="productname"
+      ngModel
+    />
+  </div>
+  <div class="form-group">
+    <label for="product-description">Product Desctiption</label>
+    <textarea
+      type="text"
+      class="form-control"
+      id="product-description"
+      placeholder="Enter Product Description"
+      name="product-description"
+      ngModel
+      rows="3"
+    ></textarea>
+  </div>
+  <app-custom-button
+    type="submit"
+    color="primary"
+    col="12"
+    text="Login"
+  ></app-custom-button>
+</form>
