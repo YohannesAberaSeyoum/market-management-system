@@ -58,7 +58,6 @@ public class UserHandler {
         String password = jsonObject.getString("password");
         Future<RowSet<Row>> output = sql.updateUser(pUsername, username, firstname, lastname, password);
         output.onSuccess(arr -> {
-            System.out.println(arr.rowCount());
             if (arr.rowCount() == 0) {
                 routingContext.json(new JsonObject().put("success", false).put("error", "You are not authenticated"));
             } else {
@@ -79,7 +78,6 @@ public class UserHandler {
                 } else {
                     routingContext.json(new JsonObject().put("success", true));
                 }
-                ;
             }).onFailure(err -> routingContext
                     .json(new JsonObject().put("success", false).put("error", err.getMessage())));
         }
