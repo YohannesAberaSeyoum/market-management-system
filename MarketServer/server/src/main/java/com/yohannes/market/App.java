@@ -1,8 +1,10 @@
 package com.yohannes.market;
 
 import com.yohannes.market.handlers.CategoryHandler;
+import com.yohannes.market.handlers.SubcategoryHandler;
 import com.yohannes.market.handlers.UserHandler;
 import com.yohannes.market.query_handlers.CategoryQuery;
+import com.yohannes.market.query_handlers.SubcategoryQuery;
 import com.yohannes.market.query_handlers.UserQuery;
 
 import io.vertx.core.Vertx;
@@ -24,10 +26,14 @@ public class App {
         vertx = Vertx.vertx();
 
         Connect connect = new Connect(vertx);
+
         UserQuery userSql = new UserQuery(connect.client);
         CategoryQuery categorySql = new CategoryQuery(connect.client);
+        SubcategoryQuery subcategorySql = new SubcategoryQuery(connect.client);
+
         UserHandler userHandler = new UserHandler(userSql);
         CategoryHandler categoryHandler = new CategoryHandler(categorySql);
+        SubcategoryHandler subcategoryHandler = new SubcategoryHandler(subcategorySql);
 
         HttpServer httpServer = vertx.createHttpServer();
 
@@ -44,8 +50,15 @@ public class App {
         router.post("/category").handler(routingContext -> categoryHandler.createCategory(routingContext));
         router.get("/category/:name").handler(routingContext -> categoryHandler.getCategory(routingContext));
         router.get("/categories").handler(routingContext -> categoryHandler.fetchCategories(routingContext));
-        router.patch("/category/:name").handler(routingContext -> categoryHandler.upgradeCategory(routingContext));
+        router.patch("/category/:name").handler(routingContext -> categoryHandler.updateCategory(routingContext));
         router.delete("/category/:name").handler(routingContext -> categoryHandler.deleteCategory(routingContext));
+        router.post("/subcategory").handler(routingContext -> subcategoryHandler.createSubcategory(routingContext));
+        router.get("/subcategory/:name").handler(routingContext -> subcategoryHandler.getSubcategory(routingContext));
+        router.get("/subcategories").handler(routingContext -> subcategoryHandler.fetchSubcategories(routingContext));
+        router.patch("/subcategory/:name")
+                .handler(routingContext -> subcategoryHandler.updateSubcategory(routingContext));
+        router.delete("/subcategory/:name")
+                .handler(routingContext -> subcategoryHandler.deleteSubcategory(routingContext));
 
         httpServer.requestHandler(router).listen(8091);
         System.out.println("The server is ready");
