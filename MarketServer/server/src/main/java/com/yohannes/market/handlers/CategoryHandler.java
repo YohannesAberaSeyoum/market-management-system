@@ -26,6 +26,7 @@ public class CategoryHandler {
             routingContext.json(new JsonObject().put("success", true));
 
         }).onFailure(err -> {
+            System.out.print(err.getMessage());
             String error = "";
             if (err.getMessage().contains("23503")) {
                 error = "You are not authenticated";

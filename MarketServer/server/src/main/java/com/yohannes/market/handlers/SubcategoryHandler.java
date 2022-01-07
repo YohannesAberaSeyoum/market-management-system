@@ -17,8 +17,8 @@ public class SubcategoryHandler {
     }
 
     public void createSubcategory(RoutingContext routingContext) {
+        String category_name = routingContext.request().getParam("category");
         JsonObject jsonObject = routingContext.getBodyAsJson();
-        String category_name = jsonObject.getString("category_name");
         String username = jsonObject.getString("username");
         String name = jsonObject.getString("name");
         String description = jsonObject.getString("description");
@@ -41,9 +41,9 @@ public class SubcategoryHandler {
 
     public void getSubcategory(RoutingContext routingContext) {
         String name = routingContext.request().getParam("name");
+        String category_name = routingContext.request().getParam("category");
         JsonObject jsonObject = routingContext.getBodyAsJson();
         String username = jsonObject.getString("username");
-        String category_name = jsonObject.getString("category_name");
         Future<RowSet<Row>> output = sql.getSubcategory(username, category_name, name);
         output.onSuccess(arr -> {
             try {
@@ -58,10 +58,10 @@ public class SubcategoryHandler {
     }
 
     public void fetchSubcategories(RoutingContext routingContext) {
+        String category_name = routingContext.request().getParam("category");
         JsonObject jsonObject = routingContext.getBodyAsJson();
         JsonArray jsonArray = new JsonArray();
         String username = jsonObject.getString("username");
-        String category_name = jsonObject.getString("category_name");
         Future<RowSet<Row>> output = sql.fetchSubcategories(username, category_name);
         output.onSuccess(arr -> {
             try {
@@ -70,16 +70,16 @@ public class SubcategoryHandler {
                         .json(new JsonObject().put("success", true).put("data", jsonArray));
             } catch (Exception e) {
                 routingContext
-                        .json(new JsonObject().put("success", false).put("error", "No category with this name"));
+                        .json(new JsonObject().put("success", false).put("error", "No subcategory with this name"));
             }
         }).onFailure(err -> routingContext
                 .json(new JsonObject().put("success", false).put("error", err.getMessage())));
     }
 
     public void updateSubcategory(RoutingContext routingContext) {
+        String category_name = routingContext.request().getParam("category");
         String pName = routingContext.request().getParam("name");
         JsonObject jsonObject = routingContext.getBodyAsJson();
-        String category_name = jsonObject.getString("category_name");
         String username = jsonObject.getString("username");
         String name = jsonObject.getString("name");
         String description = jsonObject.getString("description");
@@ -100,10 +100,10 @@ public class SubcategoryHandler {
     }
 
     public void deleteSubcategory(RoutingContext routingContext) {
+        String category_name = routingContext.request().getParam("category");
         String name = routingContext.request().getParam("name");
         JsonObject jsonObject = routingContext.getBodyAsJson();
         String username = jsonObject.getString("username");
-        String category_name = jsonObject.getString("category_name");
         Future<RowSet<Row>> output = sql.deleteSubcategory(username, category_name, name);
         output.onSuccess(arr -> {
             if (arr.rowCount() == 0) {

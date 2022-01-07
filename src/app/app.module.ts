@@ -22,7 +22,7 @@ import { userReducer } from "./store/reducers/auth.reducer";
 import { errorReducer } from "./store/reducers/error.reducer";
 
 const routes: Routes = [
-  {path: "home", component: HomepageComponent},
+  {path: "", component: HomepageComponent},
   {path: "addProduct", component: AddUpdateProductComponent },
   {path: "updateProduct/:name", component: AddUpdateProductComponent },
   {path: "addCategory", component: AddUpdateCategoryComponent },
