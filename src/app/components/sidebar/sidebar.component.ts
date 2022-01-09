@@ -64,7 +64,7 @@ export class SidebarComponent implements OnInit {
   updateCategory(name:string){
     this.router.navigate([`updateCategory/${name}`])
   }
-  updateSubcategory(name:string){
-    this.router.navigate([`updateSubcategory/${name}`])
+  updateSubcategory(category: string, name:string){
+    this.router.navigate([`updateSubcategory/${category}/${name}`])
   }
   }

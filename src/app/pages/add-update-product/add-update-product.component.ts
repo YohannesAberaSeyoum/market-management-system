@@ -146,7 +146,7 @@ this.subcategories.subscribe(item => {
   }
 
   toAddSubcategory = () => {
-    this.router.navigate(["/addSubcategory"])
+    this.router.navigate([`/addSubcategory/${this.selectedCategory}`])
   }
 
   addProduct(){

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CategoryModel } from '../Models/Category';
+import { SubcategoryItem } from '../store/models/subcategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,22 +15,23 @@ export class SubcategoryService {
         return this.http.get(url, {params: {username}})
     } 
 
-    getSubcategory(name: String, body: any){
-      const url = `http://localhost:8091/category/${name}`
-      return this.http.get(url, {params: body})
+    getSubcategory(username: string, param : {category: string, name: string}){
+      const url = `http://localhost:8091/subcategory/${param.category}/${param.name}`
+      return this.http.get(url, {params: {username}})
     }
 
-    addSubcategory(body: CategoryModel){
-      const url = "http://localhost:8091/category"
+    addSubcategory(body: SubcategoryItem){
+      const url = `http://localhost:8091/subcategory/${body.category_name}`
       return this.http.post(url, body)
     }
 
-    updateSubcategory(body: CategoryModel, pname: String){
-      const url = `http://localhost:8091/category/${pname}`
+    updateSubcategory(body: SubcategoryItem, param : {category: string, name: string}){
+      const url = `http://localhost:8091/subcategory/${param.category}/${param.name}`
       return this.http.patch(url, body)
     }
 
-    deleteSubcategory(body: CategoryModel, pname: String){
-      const url = `http://localhost:8091/category/${pname}`
+    deleteSubcategory(username: string,param : {category: string, name: string}){
+      const url = `http://localhost:8091/subcategory/${param.category}/${param.name}`
+      return this.http.delete(url, {params: {username}})
     }
 }
