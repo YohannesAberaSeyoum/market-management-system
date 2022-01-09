@@ -32,12 +32,14 @@ import { subcategoryReducer } from "./store/reducers/subcategory.reducer";
 
 const routes: Routes = [
   {path: "", component: HomepageComponent},
+  {path: "products/:category", component: HomepageComponent},
+  {path: "products/:category/:subcategory", component: HomepageComponent},
   {path: "addProduct", component: AddUpdateProductComponent },
   {path: "updateProduct/:category/:subcategory/:name", component: AddUpdateProductComponent },
   {path: "deleteProduct/:category/:subcategory/:name", component: DeleteComponent },
   {path: "addCategory", component: AddUpdateCategoryComponent },
   {path: "updateCategory/:name", component: AddUpdateCategoryComponent },
-  {path: "addSubcategory/:category", component: AddUpdateSubcategoryComponent },
+  {path: "addSubcategory", component: AddUpdateSubcategoryComponent },
   {path: "updateSubcategory/:category/:name", component: AddUpdateSubcategoryComponent },
   {path: "signin", component: SigninComponent},
   {path: "register", component: RegisterComponent}

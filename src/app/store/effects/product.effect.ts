@@ -27,6 +27,37 @@ export class ProductEffect{
             )
         )   
     )
+    fetchByCategory = createEffect(() => 
+        this.actions.pipe(
+            ofType(ProductTypes.FETCHING_BY_CATEGORY),
+            exhaustMap((action:{type: string, payload: any}) => this.productservice.fetchByCategory(action.payload.username, action.payload.param.category).pipe(
+                    map((user: any) => {
+                        console.log("User", user)
+                        if (user.success){
+                            return productFetchAll({product: user.data});
+                        }
+                        return errorGet({error: {msg: user.error}})}),
+                    catchError(() => of(errorGet({error: {msg: "Could not connect"}})))
+                )
+            )
+        )   
+    )
+
+    fetchBySubcategory = createEffect(() => 
+        this.actions.pipe(
+            ofType(ProductTypes.FETCHING_BY_SUBCATEGORY),
+            exhaustMap((action:{type: string, payload: any}) => this.productservice.fetchBySubcategory(action.payload.username, action.payload.param).pipe(
+                    map((user: any) => {
+                        console.log("User", user)
+                        if (user.success){
+                            return productFetchAll({product: user.data});
+                        }
+                        return errorGet({error: {msg: user.error}})}),
+                    catchError(() => of(errorGet({error: {msg: "Could not connect"}})))
+                )
+            )
+        )   
+    )
 
     addProduct = createEffect(() => 
         this.actions.pipe(

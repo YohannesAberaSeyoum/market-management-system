@@ -1,4 +1,4 @@
-<h1 class="text-center text-white">Categories</h1>
+<h1 class="text-center text-dark">Categories</h1>
 <app-custom-button
   [btn]="addCategoryBtn"
   (customClick)="addCategory()"
@@ -14,9 +14,14 @@
       style="border: 0"
       (click)="updateCategory(item.name)"
     >
-      Edit
+      <i class="fa fa-edit"></i>
     </a>
-    <a class="btn btn-outline-light btn-lg" type="button" style="border: 0">
+    <a
+      class="btn btn-outline-light btn-lg"
+      (click)="searchByCategory(item.name)"
+      type="button"
+      style="border: 0"
+    >
       {{ item.name }}
     </a>
     <a
@@ -30,6 +35,10 @@
       <span class="sr-only">Toggle Dropdown</span>
     </a>
     <div class="dropdown-menu">
+      <app-custom-button
+        [btn]="addSubcategoryBtn"
+        (customClick)="addSubcategory()"
+      ></app-custom-button>
       <div *ngFor="let i of subcategoryList">
         <div *ngIf="i.category_name === item.name">
           <div class="btn-group">
@@ -42,12 +51,13 @@
               style="border: 0"
               (click)="updateSubcategory(item.name, i.name)"
             >
-              Edit
+              <i class="fa fa-edit"></i>
             </a>
             <a
               class="btn btn-outline-info btn-lg"
               type="button"
               style="border: 0"
+              (click)="searchBySubcategory(item.name, i.name)"
             >
               {{ i.name }}
             </a>

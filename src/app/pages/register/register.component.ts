@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private store: Store<State>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(errorRemove())
     this.errorObserver.subscribe((item) => {
       if(item.msg){
         this.error = item.msg

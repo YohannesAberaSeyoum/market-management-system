@@ -1,6 +1,6 @@
 CREATE TABLE Categories
 (
-  name        VARCHAR(10)   NOT NULL,
+  name        VARCHAR(15)   NOT NULL,
   username    VARCHAR(15)   NOT NULL,
   description VARCHAR(1000) NULL    ,
   PRIMARY KEY (name, username)
@@ -8,20 +8,20 @@ CREATE TABLE Categories
 
 CREATE TABLE Products
 (
-  name             VARCHAR(10)   NOT NULL,
+  name             VARCHAR(15)   NOT NULL,
   description      VARCHAR(1000) NULL    ,
   quantity         INT           NOT NULL DEFAULT 0,
-  subcategory_name VARCHAR(10)   NOT NULL,
-  category_name    VARCHAR(10)   NOT NULL,
+  subcategory_name VARCHAR(15)   NOT NULL,
+  category_name    VARCHAR(15)   NOT NULL,
   username         VARCHAR(15)   NOT NULL,
   PRIMARY KEY (name, subcategory_name, category_name, username)
 );
 
 CREATE TABLE SubCategories
 (
-  name          VARCHAR(10)   NOT NULL,
+  name          VARCHAR(15)   NOT NULL,
   description   VARCHAR(1000) NULL    ,
-  category_name VARCHAR(10)   NOT NULL,
+  category_name VARCHAR(15)   NOT NULL,
   username      VARCHAR(15)   NOT NULL,
   PRIMARY KEY (name, category_name, username)
 );

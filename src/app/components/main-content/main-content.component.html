@@ -1,7 +1,7 @@
 <div class="py-3">
-  <div class="row">
-    <form class="row col-12 col-md-9">
-      <div class="form-group col-md-6">
+  <div class="row col-12">
+    <form class="row col-12 col-md-9 my-2">
+      <div class="form-group col-12 col-md-6">
         <input
           type="text"
           class="form-control"
@@ -10,7 +10,9 @@
           id="search"
         />
       </div>
-      <app-custom-button [btn]="searchBtn"></app-custom-button>
+      <div class="col-12 col-md-6">
+        <app-custom-button [btn]="searchBtn"></app-custom-button>
+      </div>
     </form>
     <div class="col-12 col-md-3">
       <app-custom-button

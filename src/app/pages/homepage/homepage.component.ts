@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { btn } from 'src/app/Models/button';
 import { signOut } from 'src/app/store/actions/auth.action';
+import { errorRemove } from 'src/app/store/actions/error.action';
 import { UserItem } from 'src/app/store/models/auth.model';
 
 @Component({
@@ -23,6 +24,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(errorRemove())
     this.auth.subscribe((item) => {
       if (!item.isSignedIn){
         this.router.navigate(["/signin"])
@@ -32,6 +34,7 @@ export class HomepageComponent implements OnInit {
 
   signOut = () => {
     this.store.dispatch(signOut())
+    window.location.reload();
   }
 
 }

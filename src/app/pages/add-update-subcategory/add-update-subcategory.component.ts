@@ -62,22 +62,26 @@ export class AddUpdateSubcategoryComponent implements OnInit {
   selectedBtn: btn = this.addBtn;
   selectedFnc = this.addSubcategory
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private store:Store<State>) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private store:Store<State>) { 
+    this.activatedRoute.params.subscribe(params => this.ngOnInit())
+  }
 
   ngOnInit(): void {
+    this.store.dispatch(errorRemove())
     this.param = {category: this.activatedRoute.snapshot.params['category'], name: this.activatedRoute.snapshot.params['name']}
     if (this.param.name){
       this.selectedBtn = this.updateBtn;
       this.selectedFnc = this.updateSubcategory
       this.store.dispatch({type: SubcategoryTypes.FETCHING, payload: {param: this.param, username: this.username}})
-          this.subcategories.subscribe(item => {;
+          this.subcategories.subscribe(item => {
       for (const i in item) {
         if(i === `${this.param.category}#${this.param.name}`){
           this.name = item[i].name
           this.description = item[i].description || ""
           this.selectedCategory = item[i].category_name
         }
-      }})
+      }
+    })
     }
     this.errorObserver.subscribe((item) => {
       if(item.msg){
@@ -107,6 +111,7 @@ export class AddUpdateSubcategoryComponent implements OnInit {
         }
       }
     })
+    this.selectedCategory = this.selectedCategory ? this.selectedCategory : this.categoryList[0].name
   }
 
   changeCategorySelect(e: Event){

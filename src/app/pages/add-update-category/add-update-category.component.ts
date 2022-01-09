@@ -50,9 +50,12 @@ export class AddUpdateCategoryComponent implements OnInit {
   selectedBtn: btn = this.addBtn;
   selectedFnc = this.addCategory
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private store:Store<State>) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private store:Store<State>) {
+    this.activatedRoute.params.subscribe(params => this.ngOnInit())
+   }
 
   ngOnInit(): void {
+    this.store.dispatch(errorRemove())
     this.param = { name: this.activatedRoute.snapshot.params['name']}
     if (this.param.name){
       this.selectedBtn = this.updateBtn;

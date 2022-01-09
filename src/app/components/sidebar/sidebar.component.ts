@@ -25,8 +25,14 @@ export class SidebarComponent implements OnInit {
 
   addCategoryBtn : btn = {
     text: "Add Category",
-    color: "danger",
+    color: "primary",
     sm: "12",
+  }
+
+  addSubcategoryBtn: btn = {
+    text: "Add Subcategory",
+    color: "primary",
+    sm: "12"
   }
 
 
@@ -59,6 +65,18 @@ export class SidebarComponent implements OnInit {
 
   addCategory(){
     this.router.navigate([`addCategory/`])
+  }
+
+  addSubcategory(){
+    this.router.navigate([`addSubcategory/`])
+  }
+
+  searchByCategory(category: string){
+    this.router.navigate([`products/${category}`])
+  }
+
+  searchBySubcategory(category: string, subcategory: string){
+    this.router.navigate([`products/${category}/${subcategory}`])
   }
 
   updateCategory(name:string){

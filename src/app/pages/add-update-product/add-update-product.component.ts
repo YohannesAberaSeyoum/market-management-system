@@ -67,18 +67,19 @@ export class AddUpdateProductComponent implements OnInit {
   selectedBtn: btn = this.addBtn;
   selectedFnc = this.addProduct
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private store:Store<State>) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private store:Store<State>) { 
+    this.activatedRoute.params.subscribe(params => this.ngOnInit())
+  }
 
   ngOnInit(): void {
+    this.store.dispatch(errorRemove())
     this.param = {category: this.activatedRoute.snapshot.params['category'], subcategory: this.activatedRoute.snapshot.params['subcategory'], name: this.activatedRoute.snapshot.params['name']}
     if (this.param.name){
       this.selectedBtn = this.updateBtn;
       this.selectedFnc = this.updateProduct
       this.store.dispatch({type: ProductTypes.FETCHING, payload: {param: this.param, username: this.username}})
-          this.products.subscribe(item => {;
+      this.products.subscribe(item => {;
       for (const i in item) {
-        console.log("bire", i)
-        console.log("sis", `${this.param.category}#${this.param.subcategory}#${this.param.name}`)
         if(i === `${this.param.category}#${this.param.subcategory}#${this.param.name}`){
           this.name = item[i].name
           this.description = item[i].description || ""
@@ -117,6 +118,11 @@ export class AddUpdateProductComponent implements OnInit {
         }
       }
     })
+    this.selectedCategory = this.selectedCategory ? this.selectedCategory : this.categoryList[0].name
+    if(this.subcategoryList.length === 0){
+      this.fetchSubFromCat()
+      this.selectedSubcategory = this.subcategoryList[0].name
+    }
   }
 
   fetchSubFromCat(){
@@ -146,7 +152,7 @@ this.subcategories.subscribe(item => {
   }
 
   toAddSubcategory = () => {
-    this.router.navigate([`/addSubcategory/${this.selectedCategory}`])
+    this.router.navigate(["/addSubcategory"])
   }
 
   addProduct(){

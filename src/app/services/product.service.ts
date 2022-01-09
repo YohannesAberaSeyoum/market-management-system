@@ -15,6 +15,15 @@ export class ProductService {
         return this.http.get(url, {params: {username}})
     } 
 
+    fetchByCategory(username: string, category: string) {
+        const url = `http://localhost:8091/products/${category}`
+        return this.http.get(url, {params: {username}})
+    } 
+    fetchBySubcategory(username: string, param: {subcategory: string, category: string}) {
+        const url = `http://localhost:8091/products/${param.category}/${param.subcategory}`
+        return this.http.get(url, {params: {username}})
+    } 
+
     getProduct(username: string, param: {name: string, category: string, subcategory: string}){
       const url = `http://localhost:8091/product/${param.category}/${param.subcategory}/${param.name}`
       return this.http.get(url, {params: {username}})
