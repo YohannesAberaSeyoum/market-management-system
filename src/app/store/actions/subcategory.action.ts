@@ -1,19 +1,27 @@
 import { createAction, props } from '@ngrx/store';
-import { ProCatSubTypes } from '../actionTypes/procatsub.type';
+import { SubcategoryTypes } from '../actionTypes/subcategory.type';
 import { SubcategoryItem } from '../models/subcategory.model';
 
 
-export const subcategoryAddUpdateFetch = createAction(
-  ProCatSubTypes.ADD_UPDATE_FETCH,
+export const subcategoryAdd = createAction(
+  SubcategoryTypes.ADD,
+  props<{subcategory: SubcategoryItem}>()
+)
+export const subcategoryUpdate = createAction(
+  SubcategoryTypes.UPDATE,
+  props<{subcategory: SubcategoryItem, psubcategory: string}>()
+)
+export const subcategoryFetch = createAction(
+  SubcategoryTypes.FETCH,
   props<{subcategory: SubcategoryItem}>()
 )
 
 export const subcategoryFetchAll = createAction(
-  ProCatSubTypes.FETCHING_ALL,
+  SubcategoryTypes.FETCH_ALL,
   props<{subcategory: SubcategoryItem[]}>()
 )
 
 export const subcategoryDelete = createAction(
-  ProCatSubTypes.DELETE,
-  props<{subcategory: string}>()
+  SubcategoryTypes.DELETE,
+  props<{subcategory: string, category: string}>()
 )

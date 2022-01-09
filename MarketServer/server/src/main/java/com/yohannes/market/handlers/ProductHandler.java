@@ -3,6 +3,7 @@ package com.yohannes.market.handlers;
 import com.yohannes.market.query_handlers.ProductQuery;
 
 import io.vertx.core.Future;
+import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
@@ -46,8 +47,8 @@ public class ProductHandler {
         String name = routingContext.request().getParam("name");
         String category_name = routingContext.request().getParam("category");
         String subcategory_name = routingContext.request().getParam("subcategory");
-        JsonObject jsonObject = routingContext.getBodyAsJson();
-        String username = jsonObject.getString("username");
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         Future<RowSet<Row>> output = sql.getProduct(username, category_name, subcategory_name, name);
         output.onSuccess(arr -> {
             try {
@@ -101,9 +102,9 @@ public class ProductHandler {
     }
 
     public void fetchProducts(RoutingContext routingContext) {
-        JsonObject jsonObject = routingContext.getBodyAsJson();
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         JsonArray jsonArray = new JsonArray();
-        String username = jsonObject.getString("username");
         Future<RowSet<Row>> output = sql.fetchProducts(username);
         output.onSuccess(arr -> {
             try {
@@ -137,16 +138,19 @@ public class ProductHandler {
             } else {
                 routingContext.json(new JsonObject().put("success", true));
             }
-        }).onFailure(err -> routingContext
-                .json(new JsonObject().put("success", false).put("error", "name is already token")));
+        }).onFailure(err -> {
+            System.out.println(err.getMessage());
+            routingContext
+                    .json(new JsonObject().put("success", false).put("error", "name is already token"));
+        });
     }
 
     public void deleteProduct(RoutingContext routingContext) {
         String name = routingContext.request().getParam("name");
         String category_name = routingContext.request().getParam("category");
         String subcategory_name = routingContext.request().getParam("subcategory");
-        JsonObject jsonObject = routingContext.getBodyAsJson();
-        String username = jsonObject.getString("username");
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         Future<RowSet<Row>> output = sql.deleteProduct(username, category_name, subcategory_name, name);
         output.onSuccess(arr -> {
             if (arr.rowCount() == 0) {

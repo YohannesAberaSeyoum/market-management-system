@@ -10,15 +10,18 @@
           id="search"
         />
       </div>
-      <app-custom-button color="primary" text="Search"></app-custom-button>
+      <app-custom-button [btn]="searchBtn"></app-custom-button>
     </form>
     <div class="col-12 col-md-3">
       <app-custom-button
-        color="secondary"
-        text="Add Product"
+        [btn]="addProductBtn"
         (customClick)="toAddProduct()"
       ></app-custom-button>
     </div>
   </div>
-  <app-product-item></app-product-item>
+  <div class="row">
+    <div *ngFor="let item of productList" class="col-12 col-lg-6 my-2">
+      <app-product-item [product]="item"></app-product-item>
+    </div>
+  </div>
 </div>

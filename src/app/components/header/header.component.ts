@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { signOut } from 'src/app/store/actions/auth.action';
+import { Component, Input, OnInit } from '@angular/core';
+import { btn } from 'src/app/Models/button';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +7,14 @@ import { signOut } from 'src/app/store/actions/auth.action';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input() links: String[] = [];
+  @Input() btn: btn = {text: ""};
+  @Input() btnClick: any = ""
 
-  constructor(private store: Store) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  signOut(){
-    this.store.dispatch(signOut())
-  }
+  
 
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { btn } from 'src/app/Models/button';
 
 @Component({
   selector: 'app-custom-button',
@@ -6,11 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./custom-button.component.css']
 })
 export class CustomButtonComponent implements OnInit {
-  @Input() color:String = "";
-  @Input() text:String = "";
-  @Input() col:String = "";
-  @Input() mx:String = "";
-  @Input() type:String = "button";
+  @Input() btn: btn = {
+    text: ""
+  }
   @Output() customClick = new EventEmitter()
 
   constructor() { }

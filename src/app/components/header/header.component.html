@@ -1,25 +1,28 @@
-<div class="row bg-primary justify-content-between">
-  <div class="col-9 col-md-4 align-baseline">
-    <h5>Market Management System</h5>
-  </div>
-  <div class="col-3 col-md-6">
-    <div class="row align-items-center">
-      <div class="d-none d-md-block col-md-3">
-        <a href="#" class="text-light">Home</a>
-      </div>
-      <div class="d-none d-md-block col-md-3">
-        <a href="#" class="text-light">About</a>
-      </div>
-      <div class="d-none d-md-block col-md-3">
-        <a href="#" class="text-light">Contact us</a>
-      </div>
-      <div class="col-12 col-md-3">
-        <app-custom-button
-          text="Signout"
-          color="danger"
-          (customClick)="signOut()"
-        ></app-custom-button>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand text-dark h4" href="#">Market Management System</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto" *ngFor="let link of links">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">{{ link }}</a>
+      </li>
+    </ul>
+    <div class="ml-auto">
+      <app-custom-button
+        [btn]="btn"
+        (customClick)="btnClick()"
+      ></app-custom-button>
     </div>
   </div>
-</div>
+</nav>

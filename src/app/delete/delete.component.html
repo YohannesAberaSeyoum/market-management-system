@@ -1,0 +1,32 @@
+<div class="modal show" id="myModal" style="display: block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Delete products</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">Are you sure?</div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+          (click)="backToHome()"
+        >
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="deleteProduct()"
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

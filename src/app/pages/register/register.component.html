@@ -1,0 +1,25 @@
+<app-header [btn]="login_btn" [btnClick]="toLogin"></app-header>
+<form
+  class="col-10 col-md-8 col-lg-6 mx-auto mt-5"
+  (ngSubmit)="register()"
+  ngNativeValidate
+>
+  <p class="text-danger">{{ error }}</p>
+  <app-custom-input
+    [(inputModel)]="firstname"
+    [inp]="firstnameInput"
+  ></app-custom-input>
+  <app-custom-input
+    [(inputModel)]="lastname"
+    [inp]="lastnameInput"
+  ></app-custom-input>
+  <app-custom-input
+    [(inputModel)]="username"
+    [inp]="usernameInput"
+  ></app-custom-input>
+  <app-custom-input
+    [(inputModel)]="password"
+    [inp]="passwordInput"
+  ></app-custom-input>
+  <app-custom-button [btn]="register_btn"></app-custom-button>
+</form>

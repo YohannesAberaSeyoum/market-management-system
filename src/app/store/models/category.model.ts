@@ -1,4 +1,4 @@
-export interface CategoryItem {
-    name: {name: string,
-    description: string}
+export interface CategoryItem {name: string,
+    description: string,
+    username: string
 }

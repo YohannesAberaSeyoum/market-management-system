@@ -1,10 +1,14 @@
 <div class="form-group">
-  <label for="{{ name }}">{{ label }}</label>
+  <label for="{{ inp.name }}">{{ inp.label }}</label>
   <input
-    type="{{ type }}"
+    type="{{ inp.type }}"
     class="form-control"
-    id="{{ name }}"
-    placeholder="{{ placeholder }}"
-    name="{{ name }}"
+    id="{{ inp.name }}"
+    placeholder="{{ inp.placeholder }}"
+    name="{{ inp.name }}"
+    [(ngModel)]="inputModel"
+    (ngModelChange)="inputModelChange.emit(inputModel)"
+    required
+    maxlength="15"
   />
 </div>

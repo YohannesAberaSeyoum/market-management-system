@@ -1,7 +1,9 @@
 <button
-  type="{{ type }}"
-  class="btn btn-{{ color }} col-{{ col }} mx-{{ mx }}"
+  type="{{ btn.type }}"
+  class="btn btn-{{ btn.color }} col-{{ btn.sm }} col-md-{{ btn.md }} col-lg-{{
+    btn.lg
+  }} my-{{ btn.my }} mx-{{ btn.mx }}"
   (click)="takeAction()"
 >
-  {{ text }}
+  {{ btn.text }}
 </button>

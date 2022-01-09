@@ -3,6 +3,7 @@ package com.yohannes.market.handlers;
 import com.yohannes.market.query_handlers.SubcategoryQuery;
 
 import io.vertx.core.Future;
+import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
@@ -58,11 +59,10 @@ public class SubcategoryHandler {
     }
 
     public void fetchSubcategories(RoutingContext routingContext) {
-        String category_name = routingContext.request().getParam("category");
-        JsonObject jsonObject = routingContext.getBodyAsJson();
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         JsonArray jsonArray = new JsonArray();
-        String username = jsonObject.getString("username");
-        Future<RowSet<Row>> output = sql.fetchSubcategories(username, category_name);
+        Future<RowSet<Row>> output = sql.fetchSubcategories(username);
         output.onSuccess(arr -> {
             try {
                 arr.forEach(item -> jsonArray.add(item.toJson()));

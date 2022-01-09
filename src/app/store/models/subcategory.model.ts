@@ -1,5 +1,6 @@
 export interface SubcategoryItem{
-    name: {category: string
-    name: string
-    description ?: string}
+    name: string,
+    description: string,
+    username: string,
+    category_name: string
 }

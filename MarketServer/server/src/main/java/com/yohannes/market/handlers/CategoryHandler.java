@@ -3,6 +3,7 @@ package com.yohannes.market.handlers;
 import com.yohannes.market.query_handlers.CategoryQuery;
 
 import io.vertx.core.Future;
+import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
@@ -40,8 +41,8 @@ public class CategoryHandler {
 
     public void getCategory(RoutingContext routingContext) {
         String name = routingContext.request().getParam("name");
-        JsonObject jsonObject = routingContext.getBodyAsJson();
-        String username = jsonObject.getString("username");
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         Future<RowSet<Row>> output = sql.getCategory(username, name);
         output.onSuccess(arr -> {
             try {
@@ -56,9 +57,9 @@ public class CategoryHandler {
     }
 
     public void fetchCategories(RoutingContext routingContext) {
-        JsonObject jsonObject = routingContext.getBodyAsJson();
         JsonArray jsonArray = new JsonArray();
-        String username = jsonObject.getString("username");
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         Future<RowSet<Row>> output = sql.fetchCategories(username);
         output.onSuccess(arr -> {
             try {
@@ -92,8 +93,8 @@ public class CategoryHandler {
 
     public void deleteCategory(RoutingContext routingContext) {
         String name = routingContext.request().getParam("name");
-        JsonObject jsonObject = routingContext.getBodyAsJson();
-        String username = jsonObject.getString("username");
+        MultiMap headers = routingContext.queryParams();
+        String username = headers.get("username");
         Future<RowSet<Row>> output = sql.deleteCategory(username, name);
         output.onSuccess(arr -> {
             if (arr.rowCount() == 0) {

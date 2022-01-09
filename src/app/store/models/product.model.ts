@@ -1,7 +1,6 @@
 export interface ProductItem{
-    name: {category: string,
-    subcategory: string,
+    category_name: string,
+    subcategory_name: string,
     name: string,
     quantity: number,
     description?: string}
-}

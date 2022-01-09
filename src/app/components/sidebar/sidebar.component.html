@@ -1,3 +1,56 @@
-<div class="text-center">
-  <h6>Categories</h6>
+<h1 class="text-center text-white">Categories</h1>
+<app-custom-button [btn]="addCategoryBtn"></app-custom-button>
+<div *ngFor="let item of categoryList">
+  <div class="btn-group mt-3 col-12">
+    <a
+      type="button"
+      class="btn btn-lg btn-outline-light"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      style="border: 0"
+      (click)="updateCategory(item.name)"
+    >
+      Edit
+    </a>
+    <a class="btn btn-outline-light btn-lg" type="button" style="border: 0">
+      {{ item.name }}
+    </a>
+    <a
+      type="button"
+      class="btn btn-lg btn-outline-light dropdown-toggle dropdown-toggle-split"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      style="border: 0"
+    >
+      <span class="sr-only">Toggle Dropdown</span>
+    </a>
+    <div class="dropdown-menu">
+      <div *ngFor="let i of subcategoryList">
+        <div *ngIf="i.category_name === item.name">
+          <div class="btn-group">
+            <a
+              type="button"
+              class="btn btn-lg btn-outline-info"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="border: 0"
+              (click)="updateSubcategory(i.name)"
+            >
+              Edit
+            </a>
+            <a
+              class="btn btn-outline-info btn-lg"
+              type="button"
+              style="border: 0"
+            >
+              {{ i.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

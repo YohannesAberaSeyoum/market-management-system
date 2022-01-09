@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { inp } from 'src/app/Models/input';
 
 @Component({
   selector: 'app-custom-input',
@@ -6,10 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./custom-input.component.css']
 })
 export class CustomInputComponent implements OnInit {
+  @Input() inp: inp = {};
   @Input() label:String = "";
   @Input() name:String = "";
   @Input() type:String = "text";
+  @Input() inputModel: String = "";
   @Input() placeholder:String = "";
+  @Output() inputModelChange = new EventEmitter<String>();
 
   constructor() { }
 

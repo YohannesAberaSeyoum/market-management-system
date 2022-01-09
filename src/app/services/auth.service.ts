@@ -1,20 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-export interface UserLoginBody {
-    username: string;
-    password: string;
-}
+import { UserLogin, UserRegister } from '../store/models/auth.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  url: string = "";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.url = "http://localhost:8091/user/"
+   }
 
-      login(userloginBody: UserLoginBody) {
-        const url = 'http://localhost:8091/user/login';
-        return this.http.post(url, userloginBody)
+      login(userloginBody: UserLogin) {
+        return this.http.post(this.url + "login", userloginBody)
     } 
+
+    register(userRegisterBody: UserRegister){
+      return this.http.post(this.url + "register",userRegisterBody)
+    }
 }
