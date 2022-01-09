@@ -35,7 +35,7 @@ export class ProductEffect{
                     map((user: any) => {
                         console.log("User", user)
                         if (user.success){
-                            productAdd({product: action.payload.body});
+                            this.store.dispatch(productAdd({product: action.payload.body}));
                             return finishEnd()
                         }
                         return errorGet({error: {msg: user.error}})}),
@@ -78,7 +78,7 @@ export class ProductEffect{
         )   
     )
 
-    deleteeProduct = createEffect(() => 
+    deleteProduct = createEffect(() => 
         this.actions.pipe(
             ofType(ProductTypes.DELETING),
             exhaustMap((action:{type: string, payload: any}) => this.productservice.deleteProduct(action.payload.username, action.payload.param).pipe(

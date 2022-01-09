@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { btn } from 'src/app/Models/button';
+import { signOut } from 'src/app/store/actions/auth.action';
 import { UserItem } from 'src/app/store/models/auth.model';
 
 @Component({
@@ -27,6 +28,10 @@ export class HomepageComponent implements OnInit {
         this.router.navigate(["/signin"])
       }
     })
+  }
+
+  signOut = () => {
+    this.store.dispatch(signOut())
   }
 
 }

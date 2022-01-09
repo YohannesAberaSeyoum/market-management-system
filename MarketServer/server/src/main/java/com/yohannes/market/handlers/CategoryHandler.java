@@ -87,8 +87,11 @@ public class CategoryHandler {
             } else {
                 routingContext.json(new JsonObject().put("success", true));
             }
-        }).onFailure(err -> routingContext
-                .json(new JsonObject().put("success", false).put("error", "name is already token")));
+        }).onFailure(err -> {
+            System.out.println(err.getMessage());
+            routingContext
+                    .json(new JsonObject().put("success", false).put("error", "name is already token"));
+        });
     }
 
     public void deleteCategory(RoutingContext routingContext) {

@@ -37,8 +37,8 @@ const routes: Routes = [
   {path: "deleteProduct/:category/:subcategory/:name", component: DeleteComponent },
   {path: "addCategory", component: AddUpdateCategoryComponent },
   {path: "updateCategory/:name", component: AddUpdateCategoryComponent },
-  {path: "addSubcategory", component: AddUpdateSubcategoryComponent },
-  {path: "updateSubcategory/:name", component: AddUpdateSubcategoryComponent },
+  {path: "addSubcategory/:category", component: AddUpdateSubcategoryComponent },
+  {path: "updateSubcategory/:category/:name", component: AddUpdateSubcategoryComponent },
   {path: "signin", component: SigninComponent},
   {path: "register", component: RegisterComponent}
 ];

@@ -15,9 +15,9 @@ export class CategoryService {
         return this.http.get(url, {params: {username}})
     } 
 
-    getCategory(name: String, body: any){
+    getCategory(username: string, name: string){
       const url = `http://localhost:8091/category/${name}`
-      return this.http.get(url, {params: body})
+      return this.http.get(url, {params: {username}})
     }
 
     addCategory(body: CategoryModel){
@@ -26,11 +26,13 @@ export class CategoryService {
     }
 
     updateCategory(body: CategoryModel, pname: String){
+      console.log("Update", body, pname)
       const url = `http://localhost:8091/category/${pname}`
       return this.http.patch(url, body)
     }
 
-    deleteCategory(body: CategoryModel, pname: String){
+    deleteCategory(username: string, pname: String){
       const url = `http://localhost:8091/category/${pname}`
+      return this.http.delete(url, {params: {username}})
     }
 }

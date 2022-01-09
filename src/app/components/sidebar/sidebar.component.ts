@@ -37,9 +37,8 @@ export class SidebarComponent implements OnInit {
     this.subcategories.subscribe(item => {
       this.subcategoryList = [];
       for (const i in item) {
-        if(i){
+        if(item[i].name != ""){
           this.subcategoryList.push(item[i])
-          console.log(item[i])
         }
       }
     })
@@ -47,7 +46,7 @@ export class SidebarComponent implements OnInit {
     this.categories.subscribe(item => {
       this.categoryList = [];
       for (const i in item) {
-        if(i){
+        if(item[i].name != ""){
         this.categoryList.push(item[i])
         }
       }
@@ -56,6 +55,10 @@ export class SidebarComponent implements OnInit {
     this.store.dispatch({type: CategoryTypes.FETCHING_ALL, payload:{username: this.username}});
     this.store.dispatch({type: SubcategoryTypes.FETCHING_ALL, payload:{username: this.username}})
     console.log("subcategory",this.subcategoryList)
+  }
+
+  addCategory(){
+    this.router.navigate([`addCategory/`])
   }
 
   updateCategory(name:string){

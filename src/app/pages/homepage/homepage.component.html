@@ -1,4 +1,8 @@
-<app-header [links]="headerLinks" [btn]="signOutBtn"></app-header>
+<app-header
+  [links]="headerLinks"
+  [btn]="signOutBtn"
+  [btnClick]="signOut"
+></app-header>
 <div class="row">
   <app-sidebar class="d-none d-md-block col-md-3 bg-info"></app-sidebar>
   <app-main-content class="col-12 col-md-9"></app-main-content>
